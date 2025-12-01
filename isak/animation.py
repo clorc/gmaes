@@ -80,7 +80,7 @@ class Animation(MovingEntity):
             )
 
     def update(self, dt):
-        if (self.is_animated or (self.time*(1-int(self.abrupt))) >= 5e-3) and (self.curr_repeat <= self.n_repeats):
+        if self.is_mid_animation():
             self.update_dt(dt)
 
             self.time = (self.time + dt) % 1
@@ -120,6 +120,8 @@ class Animation(MovingEntity):
                     self.height
                 )
 
+    def is_mid_animation(self) -> bool:
+        return (self.is_animated or (self.time*(1-int(self.abrupt))) >= 5e-3) and (self.curr_repeat <= self.n_repeats)
 
     def draw(self, x, y):
         transformed = pygame.transform.scale_by(self.sprite_sheet.subsurface(self.curr_sprite),factor=self.size)

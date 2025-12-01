@@ -118,12 +118,16 @@ class Player(MovingEntity):
             self.player_velocity = pygame.Vector2(0,0)
             self.walking_animation.is_animated = False
             self.walking_animation.flip_x = False
-            self.walking_animation.state = 0
+            if not self.walking_animation.is_mid_animation():
+                self.walking_animation.state = 0
+            if not self.attack_animation.is_mid_animation():
+                self.attack_animation.state = 0
 
         if keys[pygame.K_UP] or keys[pygame.K_DOWN] or keys[pygame.K_LEFT] or keys[pygame.K_RIGHT]:
             self.attack_action(keys)
         else:
-            self.attack_animation.state = 0
+            if not self.attack_animation.is_mid_animation():
+                self.attack_animation.state = 0
             self.attack_animation.is_animated = False
 
     def move_action(self, keys:pygame.key.ScancodeWrapper):
@@ -133,26 +137,26 @@ class Player(MovingEntity):
         if keys[pygame.K_w]:
             y_inc = -self.speed
             self.walking_animation.state = 0
-            if not self.attack_animation.is_animated:
+            if not self.attack_animation.is_mid_animation():
                 self.attack_animation.state = 2
 
         if keys[pygame.K_s]:
             y_inc =  self.speed
             self.walking_animation.state = 0
-            if not self.attack_animation.is_animated:
+            if not self.attack_animation.is_mid_animation():
                 self.attack_animation.state = 0
                 
         if keys[pygame.K_a]:
             x_inc = -self.speed
             self.walking_animation.state = 1
             self.walking_animation.flip_x = True
-            if not self.attack_animation.is_animated:
+            if not self.attack_animation.is_mid_animation():
                 self.attack_animation.state = 3
 
         if keys[pygame.K_d]:
             x_inc =  self.speed
             self.walking_animation.state = 1
-            if not self.attack_animation.is_animated:
+            if not self.attack_animation.is_mid_animation():
                 self.attack_animation.state = 1
 
 
