@@ -1,5 +1,6 @@
 import pygame
 from player import Player
+from animation import Animation
 from rooms import Room
 
 pygame.init()
@@ -25,12 +26,16 @@ start_room = Room(
 )
 
 
+
+
+
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
     start_room.draw()
+    
     
     player.update(dt, framerate)
 

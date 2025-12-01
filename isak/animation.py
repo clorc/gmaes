@@ -39,6 +39,8 @@ class Animation(MovingEntity):
             abrupt: bool = False,
             reverse: bool = False,
             n_repeats: int = 1,
+            n_cols: int = 0,
+            n_rows: int = 0
         ):
         super().__init__(screen)
         self.sprite_sheet = sprite_sheet
@@ -60,6 +62,19 @@ class Animation(MovingEntity):
 
         self.flip_x = False
 
+        if not frame_axis and not n_cols:
+            self.n_cols = frames
+            self.n_rows = 1
+
+        elif frame_axis and not n_rows:
+            self.n_cols = 1
+            self.n_rows = frames
+
+        else:
+            self.n_cols = n_cols
+            self.n_rows = n_rows
+
+
         self.is_animated = False
         self.abrupt = abrupt
         self.reverse = reverse
@@ -80,42 +95,38 @@ class Animation(MovingEntity):
             )
 
     def update(self, dt):
+        sprite_x = self.start_x + self.state_spacing_x * self.state
+        sprite_y = self.start_y + self.state_spacing_y * self.state
+
         if self.is_mid_animation():
             self.update_dt(dt)
 
             self.time = (self.time + dt) % 1
             self.current_frame = math.floor(self.time * self.framerate)
 
-            if self.current_frame == self.frames:
+            if self.current_frame >= self.frames:
                 self.curr_repeat += 1
                 self.current_frame = 0
                 self.update(dt)
                 return
 
             if self.reverse:
-                self.curr_sprite = pygame.Rect(
-                    self.start_x + (self.width + self.spacing)*(self.frames - self.current_frame - 1)*(1-self.frame_axis) + self.state_spacing_x * self.state,
-                    self.start_y + (self.height + self.spacing)*(self.frames - self.current_frame - 1)*self.frame_axis + self.state_spacing_y * self.state,
-                    self.width,
-                    self.height
-                )
+                sprite_x += (self.width + self.spacing)*(self.frames - self.current_frame - 1)*(1-self.frame_axis)
+                sprite_y += (self.height + self.spacing)*(self.frames - self.current_frame - 1)*self.frame_axis
 
             else:
-                self.curr_sprite = pygame.Rect(
-                    self.start_x + (self.width + self.spacing)*self.current_frame*(1-self.frame_axis) + self.state_spacing_x * self.state,
-                    self.start_y + (self.height + self.spacing)*self.current_frame*self.frame_axis + self.state_spacing_y * self.state,
-                    self.width,
-                    self.height
-                )
+                sprite_x += (self.width + self.spacing)*(self.current_frame//self.n_cols)*self.frame_axis + (self.width + self.spacing)*(self.current_frame%self.n_cols)*(1-self.frame_axis)
+                sprite_y += (self.height + self.spacing)*(self.current_frame//self.n_cols)*(1-self.frame_axis) + (self.height + self.spacing)*(self.current_frame%self.n_cols)*self.frame_axis
 
         else:
             self.time = 0
             self.current_frame = 0
             self.curr_repeat = 0
 
-            self.curr_sprite = pygame.Rect(
-                    self.start_x + self.state_spacing_x * self.state,
-                    self.start_y + self.state_spacing_y * self.state,
+        
+        self.curr_sprite = pygame.Rect(
+                    sprite_x,
+                    sprite_y,
                     self.width,
                     self.height
                 )

@@ -37,7 +37,7 @@ class Player(MovingEntity):
         self.attack_keys = [pygame.K_UP, pygame.K_DOWN, pygame.K_LEFT, pygame.K_RIGHT]
 
         # player animations
-        self.char_sheet = pygame.image.load("./assets/char_sheet.png"). convert_alpha()
+        self.char_sheet = pygame.image.load("./assets/char_sheet.png").convert_alpha()
         self.attack_animation = Animation(
             screen=screen,
             sprite_sheet=self.char_sheet,
@@ -55,7 +55,6 @@ class Player(MovingEntity):
             state_num=4,
             reverse=True
         )
-
         self.walking_animation = Animation(
             screen=screen,
             sprite_sheet=self.char_sheet,
@@ -73,6 +72,9 @@ class Player(MovingEntity):
             state_num=2,
             abrupt=True
         )
+
+        self.projectile_sheet = pygame.image.load("./assets/tear_sheet.png").convert_alpha()
+        
 
     def assert_bounds_increment(self, x_inc, y_inc):
         x_new_inc = x_inc
@@ -159,7 +161,6 @@ class Player(MovingEntity):
             if not self.attack_animation.is_mid_animation():
                 self.attack_animation.state = 1
 
-
         self.walking_animation.is_animated = True
         self.attack_animation.is_animated = True
         self.player_velocity = pygame.Vector2(x_inc, y_inc)
@@ -188,6 +189,7 @@ class Player(MovingEntity):
             new_projectile = Projectile(
                 projectile_pos=self.player_pos.copy(),
                 projectile_direction=direction,
+                projectile_sheet=self.projectile_sheet,
                 player_velocity=self.player_velocity.copy(),
                 screen=self.screen,
                 projectile_speed=self.projectile_speed,
@@ -238,6 +240,7 @@ class Projectile(MovingEntity):
             self, 
             projectile_pos: pygame.Vector2,
             projectile_direction: pygame.Vector2,
+            projectile_sheet: pygame.Surface,
             player_velocity: pygame.Vector2,
             screen: pygame.Surface,
             projectile_radius: int = 10,
@@ -255,6 +258,25 @@ class Projectile(MovingEntity):
         self.projectile_damage = projectile_damage
         self.projectile_lifetime = projectile_lifetime 
 
+        self.projectile_sheet = projectile_sheet
+        self.projectile_sprite = pygame.Rect(232, 8, 15, 15)
+
+        self.projectile_animation = Animation(
+            screen=screen,
+            sprite_sheet=self.projectile_sheet,
+            size=1,
+            start_x=514,
+            start_y=257,
+            spacing=6,
+            frame_axis=0,
+            framerate=16,
+            frames=16,
+            width=58,
+            height=58,
+            n_cols=4,
+            n_rows=4
+        )
+
     def update_position(self) -> bool:
         is_illegal = False
 
@@ -266,7 +288,7 @@ class Projectile(MovingEntity):
 
         return is_illegal
 
-    def update_remaining_lifetime(self, framerate) -> bool:
+    def update_remaining_lifetime(self) -> bool:
         self.projectile_lifetime -= self.dt
 
         return self.projectile_lifetime < 0
@@ -277,16 +299,16 @@ class Projectile(MovingEntity):
         projectile_pos_x = self.projectile_pos.x
         projectile_pos_y = self.projectile_pos.y
 
-        if (projectile_pos_x - self.projectile_radius) + increment.x < 0:
+        if (projectile_pos_x - self.projectile_radius) + increment.x < self.width_margin/2:
             return False
 
-        if (projectile_pos_x + self.projectile_radius) + increment.x > self.screen_width:
+        if (projectile_pos_x + self.projectile_radius) + increment.x > self.screen_width-self.width_margin/2:
             return False
 
-        if (projectile_pos_y - self.projectile_radius) + increment.y < 0:
+        if (projectile_pos_y - self.projectile_radius) + increment.y < self.height_margin/2:
             return False
 
-        if (projectile_pos_y + self.projectile_radius) + increment.y > self.screen_height:
+        if (projectile_pos_y + self.projectile_radius) + increment.y > self.screen_height-self.height_margin/2:
             return False
 
         return True
@@ -296,12 +318,24 @@ class Projectile(MovingEntity):
 
         self.update_dt(dt)
         destroy_tear = destroy_tear or self.update_position()
-        destroy_tear = destroy_tear or self.update_remaining_lifetime(framerate)
+        destroy_tear = destroy_tear or self.update_remaining_lifetime()
 
-        self.draw()
+        self.draw(destroy_tear, dt)
 
+        return destroy_tear and not self.projectile_animation.is_mid_animation()
 
-        return destroy_tear
+    def draw(self, destroy_tear, dt):
+        if not destroy_tear:
+            scaled = pygame.transform.scale(self.projectile_sheet.subsurface(self.projectile_sprite), size=(self.projectile_radius*2, self.projectile_radius*2))
+            self.screen.blit(scaled, (self.projectile_pos.x - self.projectile_radius, self.projectile_pos.y - self.projectile_radius))
+        else:
+            self.projectile_animation.draw(self.projectile_pos.x - self.projectile_radius, self.projectile_pos.y - self.projectile_radius)
 
-    def draw(self):
-        pygame.draw.circle(self.screen, "blue", self.projectile_pos, self.projectile_radius)
+            if not self.projectile_animation.is_mid_animation():
+                self.projectile_animation.is_animated=True
+                # self.projectile_speed = 0
+                # self.player_velocity *= 0
+            else: 
+                self.projectile_animation.is_animated=False
+
+            self.projectile_animation.update(dt=dt)
