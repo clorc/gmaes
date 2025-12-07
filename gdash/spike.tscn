@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://beaqt228k5me5"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pe76i"]
+
+[node name="spike" type="RigidBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(0, -29, -12, 0, 12, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(9.536743e-07, -9.536743e-07)
+rotation = -1.1780972
+scale = Vector2(31.999998, 32)
+skew = 0.7853981
+texture = SubResource("PlaceholderTexture2D_pe76i")

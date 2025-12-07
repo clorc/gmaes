@@ -6,6 +6,8 @@ size = Vector2(64, 64)
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4flbx"]
 
 [node name="Player" type="RigidBody2D"]
+contact_monitor = true
+max_contacts_reported = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sh265")
