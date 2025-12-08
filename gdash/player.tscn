@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://chxx50ihlymkf"]
+[gd_scene load_steps=4 format=3 uid="uid://chxx50ihlymkf"]
+
+[ext_resource type="Script" uid="uid://bbb5d2yrbctff" path="res://player.gd" id="1_4flbx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sh265"]
 size = Vector2(64, 64)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4flbx"]
 
-[node name="Player" type="RigidBody2D"]
-contact_monitor = true
-max_contacts_reported = 2
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_4flbx")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sh265")
