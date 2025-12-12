@@ -1,32 +1,27 @@
-extends RigidBody2D
+extends CharacterBody2D
 
-var y_velocity = 0
-var velocity_vector = Vector2.ZERO
-var on_floor: bool = false # now global!
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+const ANGULAR_VELOCITY = 240.0
+const JUMP_VELOCITY = -700.0
 
-#func _integrate_forces(state: PhysicsDirectBodyState2D) -> void:
-	#on_floor = false # reset on_floor for this physics frame
-#
-	#var i := 0
-	#while i < state.get_contact_count():
-		#var normal := state.get_contact_local_normal(i)
-		#var this_contact_on_floor = normal.dot(Vector2.UP) > 0.99
-#
-		## boolean math, will stay true if any one contact is on floor
-		#on_floor = on_floor or this_contact_on_floor
-		#i += 1
+var angular = 0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_up"):
-		if abs(linear_velocity.dot(Vector2.UP)) <1e-6:
-			y_velocity = 550
-			velocity_vector = Vector2.UP * y_velocity
-			
-			apply_torque_impulse(4000.0)
-			apply_impulse(velocity_vector)
+func _physics_process(delta: float) -> void:
+	# Add the gravity.
+	if not is_on_floor():
+		velocity += 2 * get_gravity() * delta
 	
+	# Handle rotation
+	if not is_on_floor():
+		rotation_degrees += angular * delta
+		print(rotation_degrees)
+	else:
+		rotation_degrees = round(rotation_degrees/90)*90
+		angular = 0
+
+	# Handle jump.
+	if Input.is_action_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		angular = ANGULAR_VELOCITY
+
+	move_and_slide()

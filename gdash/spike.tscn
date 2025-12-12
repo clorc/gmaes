@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://beaqt228k5me5"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_pe76i"]
+[ext_resource type="Texture2D" uid="uid://id5v18n6dctn" path="res://assets/spike.png" id="1_8ryga"]
 
 [node name="spike" type="RigidBody2D"]
 
@@ -8,8 +8,6 @@
 polygon = PackedVector2Array(0, -29, -12, 0, 12, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(9.536743e-07, -9.536743e-07)
-rotation = -1.1780972
-scale = Vector2(31.999998, 32)
-skew = 0.7853981
-texture = SubResource("PlaceholderTexture2D_pe76i")
+position = Vector2(-12.000001, -29.000002)
+scale = Vector2(24.000002, 29.000002)
+texture = ExtResource("1_8ryga")
