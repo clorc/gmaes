@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceey6fwq0haru"]
+
+[ext_resource type="Texture2D" uid="uid://1fox35kemv1o" path="res://assets/sprites/player_74-uhd.png" id="1_3vyb7"]
+
+[node name="player" type="CharacterBody2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_3vyb7")
+region_enabled = true
+region_rect = Rect2(2, 132, 126, 120)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.13725491, 1, 1, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_3vyb7")
+region_enabled = true
+region_rect = Rect2(2, 132, 126, 120)
+region_filter_clip_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
