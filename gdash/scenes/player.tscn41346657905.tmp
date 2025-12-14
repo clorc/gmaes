@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ceey6fwq0haru"]
+[gd_scene load_steps=20 format=3 uid="uid://ceey6fwq0haru"]
 
 [ext_resource type="Texture2D" uid="uid://1fox35kemv1o" path="res://assets/sprites/player_74-uhd.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://daf1ecixwljpn" path="res://scripts/player.gd" id="1_g2els"]
@@ -8,72 +8,49 @@
 [ext_resource type="Texture2D" uid="uid://bwtful2uf6i0s" path="res://assets/sprites/player_ball_05-uhd.png" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b55xrplvw23ui" path="res://assets/sprites/player_explosion.png" id="7_fjrip"]
 
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_fjrip"]
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fjrip"]
-lifetime_randomness = 1.0
-particle_flag_rotate_y = true
-particle_flag_disable_z = true
-angle_min = 1.0728835e-05
-angle_max = 1.0728835e-05
-initial_velocity_min = -30.0
-initial_velocity_max = -30.0
-angular_velocity_min = -1.6093254e-05
-angular_velocity_max = -1.6093254e-05
-gravity = Vector3(0, 98, 0)
-scale_min = 3.0
-scale_max = 4.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_fjrip"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
 atlas = ExtResource("7_fjrip")
 region = Rect2(0, 0, 320, 330)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_smehm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
 atlas = ExtResource("7_fjrip")
 region = Rect2(320, 0, 320, 330)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ur7pv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
 atlas = ExtResource("7_fjrip")
 region = Rect2(640, 0, 320, 330)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
 atlas = ExtResource("7_fjrip")
 region = Rect2(0, 330, 320, 330)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
 atlas = ExtResource("7_fjrip")
 region = Rect2(320, 330, 320, 330)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
 atlas = ExtResource("7_fjrip")
 region = Rect2(640, 330, 320, 330)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
 atlas = ExtResource("7_fjrip")
 region = Rect2(0, 660, 320, 330)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
 atlas = ExtResource("7_fjrip")
 region = Rect2(320, 660, 320, 330)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
 atlas = ExtResource("7_fjrip")
 region = Rect2(640, 660, 320, 330)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
-atlas = ExtResource("7_fjrip")
-region = Rect2(0, 990, 320, 330)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
 atlas = ExtResource("7_fjrip")
-region = Rect2(320, 990, 320, 330)
+region = Rect2(0, 990, 320, 330)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tuyoq"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_fjrip")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_smehm")
 }, {
@@ -101,10 +78,10 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_a8ls1")
 }, {
-"duration": 25.0,
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_qfm1y")
 }],
-"loop": false,
+"loop": true,
 "name": &"death_explosion",
 "speed": 30.0
 }]
@@ -116,12 +93,13 @@ size = Vector2(28, 28)
 collision_layer = 2
 floor_constant_speed = true
 script = ExtResource("1_g2els")
+gravity_direction = null
+mode = null
+state = null
 
-[node name="player_sprites" type="Node2D" parent="."]
+[node name="cube" type="Node2D" parent="."]
 
-[node name="cube" type="Node2D" parent="player_sprites"]
-
-[node name="cube_secondary" type="Sprite2D" parent="player_sprites/cube"]
+[node name="cube_secondary" type="Sprite2D" parent="cube"]
 position = Vector2(0, -1)
 rotation = -1.5707964
 scale = Vector2(0.25, 0.25)
@@ -129,7 +107,7 @@ texture = ExtResource("1_3vyb7")
 region_enabled = true
 region_rect = Rect2(131.82198, 131.193, 91.62462, 119.51843)
 
-[node name="cube_primary" type="Sprite2D" parent="player_sprites/cube"]
+[node name="cube_primary" type="Sprite2D" parent="cube"]
 modulate = Color(0.13725491, 1, 1, 1)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_3vyb7")
@@ -137,14 +115,14 @@ region_enabled = true
 region_rect = Rect2(2, 132, 126, 120)
 region_filter_clip_enabled = true
 
-[node name="ship" type="Node2D" parent="player_sprites"]
+[node name="ship" type="Node2D" parent="."]
 visible = false
 
-[node name="cube" type="Node2D" parent="player_sprites/ship"]
+[node name="cube" type="Node2D" parent="ship"]
 position = Vector2(0.5549984, 0.11499977)
 scale = Vector2(1.25, 1.25)
 
-[node name="cube_secondary" type="Sprite2D" parent="player_sprites/ship/cube"]
+[node name="cube_secondary" type="Sprite2D" parent="ship/cube"]
 position = Vector2(-0.6573304, -4.33)
 rotation = -1.5707964
 scale = Vector2(0.25, 0.25)
@@ -152,7 +130,7 @@ texture = ExtResource("3_dqkch")
 region_enabled = true
 region_rect = Rect2(134.3689, 1.5581703, 46.097824, 60.144794)
 
-[node name="cube_primary" type="Sprite2D" parent="player_sprites/ship/cube"]
+[node name="cube_primary" type="Sprite2D" parent="ship/cube"]
 modulate = Color(0.13725491, 1, 1, 1)
 position = Vector2(-0.69399834, -3.9170003)
 rotation = -1.5707964
@@ -162,7 +140,7 @@ region_enabled = true
 region_rect = Rect2(70.82652, 2.0601883, 59.848038, 62.960136)
 region_filter_clip_enabled = true
 
-[node name="ship_secondary" type="Sprite2D" parent="player_sprites/ship"]
+[node name="ship_secondary" type="Sprite2D" parent="ship"]
 position = Vector2(4, 8)
 rotation = -1.5707964
 scale = Vector2(0.295, 0.295)
@@ -170,7 +148,7 @@ texture = ExtResource("3_qhqgy")
 region_enabled = true
 region_rect = Rect2(172.4157, 2.6210632, 66.28879, 178.69366)
 
-[node name="ship_primary" type="Sprite2D" parent="player_sprites/ship"]
+[node name="ship_primary" type="Sprite2D" parent="ship"]
 modulate = Color(0.13725491, 1, 1, 1)
 position = Vector2(0.3049984, 4.865)
 scale = Vector2(0.295, 0.295)
@@ -178,13 +156,13 @@ texture = ExtResource("3_qhqgy")
 region_enabled = true
 region_rect = Rect2(2.8345718, 110.21178, 158.64804, 94.270874)
 
-[node name="ufo" type="Node2D" parent="player_sprites"]
+[node name="ufo" type="Node2D" parent="."]
 visible = false
 
-[node name="cube" type="Node2D" parent="player_sprites/ufo"]
+[node name="cube" type="Node2D" parent="ufo"]
 position = Vector2(0.5549984, 0.11499977)
 
-[node name="cube_secondary" type="Sprite2D" parent="player_sprites/ufo/cube"]
+[node name="cube_secondary" type="Sprite2D" parent="ufo/cube"]
 position = Vector2(-0.425, -3.125)
 rotation = -1.5707964
 scale = Vector2(0.225, 0.225)
@@ -192,7 +170,7 @@ texture = ExtResource("3_dqkch")
 region_enabled = true
 region_rect = Rect2(134.3689, 1.5581703, 46.097824, 60.144794)
 
-[node name="cube_primary" type="Sprite2D" parent="player_sprites/ufo/cube"]
+[node name="cube_primary" type="Sprite2D" parent="ufo/cube"]
 modulate = Color(0.13725491, 1, 1, 1)
 position = Vector2(-0.425, -3.125)
 rotation = -1.5707964
@@ -202,21 +180,21 @@ region_enabled = true
 region_rect = Rect2(70.82652, 2.0601883, 59.848038, 62.960136)
 region_filter_clip_enabled = true
 
-[node name="ufo_cockpit" type="Sprite2D" parent="player_sprites/ufo"]
+[node name="ufo_cockpit" type="Sprite2D" parent="ufo"]
 position = Vector2(0, -6)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_qlg0r")
 region_enabled = true
 region_rect = Rect2(2.2767563, 89.77068, 105.30486, 69.24589)
 
-[node name="ufo_secondary" type="Sprite2D" parent="player_sprites/ufo"]
+[node name="ufo_secondary" type="Sprite2D" parent="ufo"]
 position = Vector2(0, 3)
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_qlg0r")
 region_enabled = true
 region_rect = Rect2(110, 152, 128, 49)
 
-[node name="ufo_primary" type="Sprite2D" parent="player_sprites/ufo"]
+[node name="ufo_primary" type="Sprite2D" parent="ufo"]
 modulate = Color(0.13725491, 1, 1, 1)
 position = Vector2(0.3049984, 5.865)
 rotation = -1.5707964
@@ -225,16 +203,16 @@ texture = ExtResource("5_qlg0r")
 region_enabled = true
 region_rect = Rect2(161.59552, 1.4250832, 77.04672, 148.61401)
 
-[node name="ball" type="Node2D" parent="player_sprites"]
+[node name="ball" type="Node2D" parent="."]
 visible = false
 
-[node name="ball_secondary" type="Sprite2D" parent="player_sprites/ball"]
+[node name="ball_secondary" type="Sprite2D" parent="ball"]
 scale = Vector2(0.22, 0.22)
 texture = ExtResource("6_tuyoq")
 region_enabled = true
 region_rect = Rect2(295.52466, 2.642292, 88.56839, 88.697235)
 
-[node name="ball_primary" type="Sprite2D" parent="player_sprites/ball"]
+[node name="ball_primary" type="Sprite2D" parent="ball"]
 modulate = Color(0.13725491, 1, 1, 1)
 rotation = -1.5707964
 scale = Vector2(0.22, 0.22)
@@ -242,23 +220,14 @@ texture = ExtResource("6_tuyoq")
 region_enabled = true
 region_rect = Rect2(153, 2.9, 140, 140)
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="player_sprites"]
-position = Vector2(-14, 13)
-rotation = 0.51864934
-amount = 20
-sub_emitter = NodePath(".")
-texture = SubResource("PlaceholderTexture2D_fjrip")
-process_material = SubResource("ParticleProcessMaterial_fjrip")
-
 [node name="death_explosion" type="AnimatedSprite2D" parent="."]
 visible = false
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"death_explosion"
+frame_progress = 0.8936792
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3vyb7")
 
-[node name="Timer" type="Timer" parent="."]
-
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
