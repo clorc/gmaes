@@ -1,3 +1,105 @@
-[gd_scene format=3 uid="uid://bjiv5v6cbdoda"]
+[gd_scene load_steps=4 format=3 uid="uid://bjiv5v6cbdoda"]
+
+[ext_resource type="Script" uid="uid://ceyem5bpj6wb0" path="res://scripts/portal.gd" id="1_1ffj6"]
+[ext_resource type="Texture2D" uid="uid://b0ajvmqa0g7a" path="res://assets/sprites/portal_sprites.png" id="1_v0xau"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ffj6"]
+radius = 78.0
+height = 306.0
 
 [node name="portal" type="Area2D"]
+collision_mask = 10
+script = ExtResource("1_1ffj6")
+
+[node name="portal_sprites" type="Node2D" parent="."]
+scale = Vector2(0.15, 0.15)
+
+[node name="blue_grav_portal" type="Node2D" parent="portal_sprites"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="portal_sprites/blue_grav_portal"]
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(0, 350, 200, 350)
+
+[node name="foreground" type="Sprite2D" parent="portal_sprites/blue_grav_portal"]
+z_index = 10
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(0, 0, 200, 350)
+
+[node name="yellow_grav_portal" type="Node2D" parent="portal_sprites"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="portal_sprites/yellow_grav_portal"]
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(200, 350, 200, 350)
+
+[node name="foreground" type="Sprite2D" parent="portal_sprites/yellow_grav_portal"]
+z_index = 10
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(200, 0, 200, 350)
+
+[node name="ufo_portal" type="Node2D" parent="portal_sprites"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="portal_sprites/ufo_portal"]
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(399, 350, 200, 350)
+
+[node name="foreground" type="Sprite2D" parent="portal_sprites/ufo_portal"]
+z_index = 10
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(400, 0, 200, 350)
+
+[node name="ship_portal" type="Node2D" parent="portal_sprites"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="portal_sprites/ship_portal"]
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(601, 350, 200, 350)
+
+[node name="foreground" type="Sprite2D" parent="portal_sprites/ship_portal"]
+z_index = 10
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(600, 0, 200, 350)
+
+[node name="cube_portal" type="Node2D" parent="portal_sprites"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="portal_sprites/cube_portal"]
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(799, 350, 200, 350)
+
+[node name="foreground" type="Sprite2D" parent="portal_sprites/cube_portal"]
+z_index = 10
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(800, 0, 200, 350)
+
+[node name="ball_portal" type="Node2D" parent="portal_sprites"]
+visible = false
+
+[node name="background" type="Sprite2D" parent="portal_sprites/ball_portal"]
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(1001, 350, 200, 350)
+
+[node name="foreground" type="Sprite2D" parent="portal_sprites/ball_portal"]
+z_index = 10
+texture = ExtResource("1_v0xau")
+region_enabled = true
+region_rect = Rect2(1000, 0, 200, 350)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(0.15, 0.15)
+shape = SubResource("CapsuleShape2D_1ffj6")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

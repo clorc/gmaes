@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn4s2y4hmhgyj"]
+
+[ext_resource type="Script" uid="uid://omt72ge5jheb" path="res://scripts/little_spike.gd" id="1_anoxi"]
+[ext_resource type="Texture2D" uid="uid://bunub1lleuuuu" path="res://assets/sprites/spritesheet.png" id="2_55hxc"]
+
+[node name="little_spike" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_anoxi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 3.1415927
+texture = ExtResource("2_55hxc")
+region_enabled = true
+region_rect = Rect2(600.6, 0, 119.5, 120)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+rotation = 3.1415927
+polygon = PackedVector2Array(-59, 59, 0, 7, 58, 59)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
