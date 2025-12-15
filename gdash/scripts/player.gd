@@ -102,8 +102,11 @@ func ufo_movement(delta: float) -> void:
 		ufo_target_angle = 30.0
 		velocity.y = gravity_direction*gravity_multiplier*UFO_VELOCITY
 	
-func ball_movement() -> void:
-	pass
+func ball_movement(delta: float) -> void:
+	ball_sprite.rotation_degrees += gravity_direction * delta * ANGULAR_VELOCITY
+	
+	if Input.is_action_just_pressed("jump"):
+		pass
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -132,7 +135,7 @@ func _physics_process(delta: float) -> void:
 				ufo_movement(delta)
 				
 			GameMode.BALL:
-				ball_movement()
+				ball_movement(delta)
 	else:
 		velocity = Vector2(0,0)
 		death_explosion.play("death_explosion")

@@ -116,6 +116,10 @@ size = Vector2(28, 28)
 collision_layer = 2
 floor_constant_speed = true
 script = ExtResource("1_g2els")
+SPEED = null
+gravity_multiplier = null
+gravity_direction = null
+mode = null
 state = 1
 
 [node name="player_sprites" type="Node2D" parent="."]

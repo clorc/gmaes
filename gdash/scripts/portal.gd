@@ -33,7 +33,7 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if type >= 4:
 		body.state = body.CharacterState.MIDAIR
-		body.position.y -= 5
+		body.position.y -= body.gravity_direction*5
 		
 		match type:
 			PortalType.BLUE:
