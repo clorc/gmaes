@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://33p3hn6k34sq"]
+
+[ext_resource type="PackedScene" uid="uid://stom1xfvasu0" path="res://scenes/pad.tscn" id="1_4beu3"]
+[ext_resource type="Texture2D" uid="uid://bunub1lleuuuu" path="res://assets/sprites/spritesheet.png" id="2_vdbwi"]
+
+[node name="pink_pad" type="Node2D"]
+
+[node name="pad" parent="." instance=ExtResource("1_4beu3")]
+type = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_vdbwi")
+region_enabled = true
+region_rect = Rect2(480, 240, 120, 120)

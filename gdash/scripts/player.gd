@@ -3,6 +3,11 @@ extends CharacterBody2D
 enum CharacterState { MIDAIR, ONFLOOR, DEAD }
 enum GameMode { CUBE, SHIP, UFO, BALL }
 
+@onready var game_manager: Node = %game_manager
+
+@onready var player_trail: CPUParticles2D = $trails/player_trail
+@onready var ship_trail: CPUParticles2D = $player_sprites/ship/ship_trail
+
 @onready var cube_sprite: Node2D = $player_sprites/cube
 @onready var ship_sprite: Node2D = $player_sprites/ship
 @onready var ufo_sprite: Node2D = $player_sprites/ufo
@@ -25,6 +30,8 @@ var ufo_target_angle = 0.0
 @export var mode: GameMode
 @export var state: CharacterState
 
+func win() -> void:
+	get_tree().paused = true
 
 func die() -> void:
 	if not state == CharacterState.DEAD:
@@ -63,11 +70,13 @@ func cube_movement(delta: float) -> void:
 
 	if state == CharacterState.MIDAIR:
 		cube_sprite.rotation_degrees += gravity_direction * delta * ANGULAR_VELOCITY
+		player_trail.emitting = false
 	
 	else:
 		var slope_deg = rad_to_deg(acos(floor_normal.dot(Vector2(0,-1))))
 		var target_rotation = round(cube_sprite.rotation_degrees/90.0)*90.0 - slope_deg
 		cube_sprite.rotation_degrees = move_toward(cube_sprite.rotation_degrees, target_rotation, delta*ANGULAR_VELOCITY*3)
+		player_trail.emitting = true
 	
 	cube_sprite.rotation_degrees = fmod(cube_sprite.rotation_degrees, 360.0)
 	
@@ -86,7 +95,10 @@ func ship_movement(delta: float) -> void:
 		scale.y = -1.0
 	
 	if Input.is_action_pressed("jump"):
+		ship_trail.emitting = true
 		velocity.y += gravity_direction*gravity_multiplier*FLY_ACCELERATION*delta
+	else:
+		ship_trail.emitting = false
 		
 	
 func ufo_movement(delta: float) -> void:
@@ -105,14 +117,15 @@ func ufo_movement(delta: float) -> void:
 func ball_movement(delta: float) -> void:
 	ball_sprite.rotation_degrees += gravity_direction * delta * ANGULAR_VELOCITY
 	
-	if Input.is_action_just_pressed("jump"):
-		pass
+	if Input.is_action_just_pressed("jump") and state == CharacterState.ONFLOOR:
+		gravity_direction *= -1
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not state == CharacterState.DEAD:
 		velocity.x = SPEED
-		
+		up_direction = Vector2(0, -gravity_direction)
+
 		# Handle jump.
 		if not is_on_floor():
 			velocity += gravity_direction * gravity_multiplier * get_gravity() * delta
@@ -135,6 +148,7 @@ func _physics_process(delta: float) -> void:
 				ufo_movement(delta)
 				
 			GameMode.BALL:
+				gravity_multiplier = 1.5
 				ball_movement(delta)
 	else:
 		velocity = Vector2(0,0)

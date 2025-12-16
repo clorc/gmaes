@@ -1,3 +1,30 @@
-[gd_scene format=3 uid="uid://stom1xfvasu0"]
+[gd_scene load_steps=3 format=3 uid="uid://stom1xfvasu0"]
+
+[ext_resource type="Script" uid="uid://dppkmv2xwlgho" path="res://scripts/pad.gd" id="1_acetd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4mtym"]
+size = Vector2(30, 6)
 
 [node name="pad" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_acetd")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(0, 12)
+fixed_fps = 30
+fract_delta = false
+emission_shape = 3
+emission_rect_extents = Vector2(10, 1)
+gravity = Vector2(0, -100)
+damping_min = 40.0
+damping_max = 60.0
+angle_min = -20.0
+angle_max = 20.0
+scale_amount_max = 4.0
+color = Color(1, 1, 1, 0.54509807)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_4mtym")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

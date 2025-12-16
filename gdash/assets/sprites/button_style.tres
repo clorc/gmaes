@@ -1,0 +1,12 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dbayphv72a6f8"]
+
+[ext_resource type="Texture2D" uid="uid://vbwx182tv3jo" path="res://assets/sprites/GJ_longBtn03_001.png" id="1_85gvh"]
+
+[resource]
+texture = ExtResource("1_85gvh")
+expand_margin_left = 7.0
+expand_margin_top = 4.0
+expand_margin_right = 7.0
+expand_margin_bottom = 4.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2

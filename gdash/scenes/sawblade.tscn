@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ctr2cbl5olfmu"]
+[gd_scene load_steps=4 format=3 uid="uid://ctr2cbl5olfmu"]
 
 [ext_resource type="Texture2D" uid="uid://bunub1lleuuuu" path="res://assets/sprites/spritesheet.png" id="1_2q6p5"]
 [ext_resource type="Script" uid="uid://c8lvnrae8ej2o" path="res://scripts/sawblade.gd" id="1_jbc87"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jbc87"]
+radius = 85.51023
 
 [node name="sawblade" type="Area2D"]
 modulate = Color(0, 0, 0, 1)
@@ -14,7 +17,7 @@ region_enabled = true
 region_rect = Rect2(120, 240, 239, 240)
 region_filter_clip_enabled = true
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(-41, -114, -52, -59, -57, -55, -93, -78, -75, -26, -77, -19, -119, -21, -78, 15, -77, 21, -114, 41, -60, 52, -56, 56, -78, 93, -25, 75, -20, 76, -21, 119, 15, 77, 22, 76, 41, 114, 52, 59, 56, 54, 93, 79, 74, 24, 77, 19, 119, 21, 77, -16, 76, -22, 114, -41, 59, -52, 55, -56, 79, -93, 26, -75, 20, -76, 22, -120, -15, -77, -22, -75)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_jbc87")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

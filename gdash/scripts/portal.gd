@@ -33,16 +33,14 @@ func _ready() -> void:
 func _on_body_entered(body: Node2D) -> void:
 	if type >= 4:
 		body.state = body.CharacterState.MIDAIR
-		body.position.y -= body.gravity_direction*5
+		#body.position.y -= body.gravity_direction*5
 		
 		match type:
 			PortalType.BLUE:
 				body.gravity_direction = 1
-				body.up_direction = Vector2(0, -1)
 				
 			PortalType.YELLOW:
 				body.gravity_direction = -1
-				body.up_direction = Vector2(0, 1)
 	else:
 		body.mode = type
 		body.switch_sprite(type)
