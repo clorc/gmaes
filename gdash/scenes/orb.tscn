@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dd8a2nucv1qpr"]
 
-[ext_resource type="Script" path="res://scripts/orb.gd" id="1_ktqa0"]
+[ext_resource type="Script" uid="uid://becjbrqxah0nj" path="res://scripts/orb.gd" id="1_ktqa0"]
 [ext_resource type="Texture2D" uid="uid://dmgu5qe4ehch7" path="res://assets/sprites/orb_circle.png" id="2_ubfm6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ktqa0"]
-radius = 17.0
+radius = 28.01785
 
 [sub_resource type="Animation" id="Animation_vnh3v"]
 length = 0.001

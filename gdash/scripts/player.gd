@@ -5,6 +5,8 @@ enum GameMode { CUBE, SHIP, UFO, BALL }
 
 @onready var game_manager: Node = %game_manager
 @onready var win_screen: CanvasLayer = $"../game_manager/win_screen"
+@onready var attempt_label: Label = $"../game_manager/attempt_label"
+@onready var win_screen_popup: AnimationPlayer = $"../game_manager/win_screen/win_screen_popup"
 
 @onready var player_trail: CPUParticles2D = $trails/player_trail
 @onready var ship_trail: CPUParticles2D = $player_sprites/ship/ship_trail
@@ -14,7 +16,8 @@ enum GameMode { CUBE, SHIP, UFO, BALL }
 @onready var ufo_sprite: Node2D = $player_sprites/ufo
 @onready var ball_sprite: Node2D = $player_sprites/ball
 
-@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var explosion_sound: AudioStreamPlayer2D = $explosion_sound
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $level_music
 @onready var death_explosion: AnimatedSprite2D = $death_explosion
 @onready var timer: Timer = $Timer
 
@@ -26,6 +29,7 @@ const FLY_ACCELERATION = -2000
 const ANGULAR_VELOCITY = 310
 
 var ufo_target_angle = 0.0
+@export var buffer_triggered = false
 
 @export var gravity_multiplier = 1.3
 @export var gravity_direction = 1
@@ -33,13 +37,16 @@ var ufo_target_angle = 0.0
 @export var state: CharacterState
 
 func win() -> void:
+	game_manager.update_winscreen_stats()
 	win_screen.visible = true
+	win_screen_popup.play("win_screen_popup")
 	get_tree().paused = true
 
 func die() -> void:
 	if not state == CharacterState.DEAD:
 		state = CharacterState.DEAD
 		AttemptNumber.attempt += 1
+		explosion_sound.play()
 		get_node("death_explosion").visible = true
 		get_node("player_sprites").visible = false
 		timer.start(1)
@@ -123,8 +130,12 @@ func ufo_movement(delta: float) -> void:
 func ball_movement(delta: float) -> void:
 	ball_sprite.rotation_degrees += gravity_direction * delta * ANGULAR_VELOCITY
 	
-	if Input.is_action_just_pressed("jump") and state == CharacterState.ONFLOOR:
+	if Input.is_action_pressed("jump") and state == CharacterState.ONFLOOR and not buffer_triggered:
+		buffer_triggered = true
 		gravity_direction *= -1
+	
+	if Input.is_action_just_released("jump"):
+		buffer_triggered = false
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.

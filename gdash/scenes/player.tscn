@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://ceey6fwq0haru"]
+[gd_scene load_steps=24 format=3 uid="uid://ceey6fwq0haru"]
 
 [ext_resource type="Texture2D" uid="uid://1fox35kemv1o" path="res://assets/sprites/player_74-uhd.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://daf1ecixwljpn" path="res://scripts/player.gd" id="1_g2els"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://cx0hjrmnvtupl" path="res://assets/sprites/bird_14-uhd.png" id="5_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://bwtful2uf6i0s" path="res://assets/sprites/player_ball_05-uhd.png" id="6_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b55xrplvw23ui" path="res://assets/sprites/player_explosion.png" id="7_fjrip"]
+[ext_resource type="AudioStream" uid="uid://bq4qslixk40xj" path="res://assets/music/explode_11.ogg" id="8_smehm"]
 
 [sub_resource type="Gradient" id="Gradient_fjrip"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
@@ -270,6 +271,9 @@ visible = false
 scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"death_explosion"
+
+[node name="explosion_sound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_smehm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3vyb7")

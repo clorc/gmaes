@@ -1,15 +1,88 @@
-[gd_scene load_steps=3 format=3 uid="uid://33p3hn6k34sq"]
+[gd_scene load_steps=7 format=3 uid="uid://33p3hn6k34sq"]
 
 [ext_resource type="PackedScene" uid="uid://stom1xfvasu0" path="res://scenes/pad.tscn" id="1_4beu3"]
+[ext_resource type="Texture2D" uid="uid://ctdsuwiqr1dew" path="res://assets/sprites/Untitled.png" id="1_vdbwi"]
 [ext_resource type="Texture2D" uid="uid://bunub1lleuuuu" path="res://assets/sprites/spritesheet.png" id="2_vdbwi"]
 
+[sub_resource type="Animation" id="Animation_26w1b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("orb_effect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("orb_effect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.28235295, 1, 0.78431374)]
+}
+
+[sub_resource type="Animation" id="Animation_qkoap"]
+resource_name = "orb_effect"
+length = 0.333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("orb_effect:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1e-05, 1e-05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("orb_effect:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.28235295, 1, 1), Color(1, 0.28235295, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hua5j"]
+_data = {
+&"RESET": SubResource("Animation_26w1b"),
+&"orb_effect": SubResource("Animation_qkoap")
+}
+
 [node name="pink_pad" type="Node2D"]
+
+[node name="orb_effect" type="Sprite2D" parent="."]
+modulate = Color(1, 0.28235295, 1, 0.78431374)
+position = Vector2(0, 52)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("1_vdbwi")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="orb_effect"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_hua5j")
+}
 
 [node name="pad" parent="." instance=ExtResource("1_4beu3")]
 type = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_vdbwi")
 region_enabled = true
 region_rect = Rect2(480, 240, 120, 120)
