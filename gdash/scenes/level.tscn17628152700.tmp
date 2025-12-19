@@ -479,6 +479,7 @@ limit_smoothed = true
 [node name="game_manager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("19_5k0ak")
+time_passed = null
 
 [node name="pause_menu" type="CanvasLayer" parent="game_manager"]
 process_mode = 2

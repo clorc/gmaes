@@ -16,6 +16,6 @@ region_rect = Rect2(600.6, 0, 119.5, 120)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 rotation = 3.1415927
-polygon = PackedVector2Array(-59, 59, 0, 7, 58, 59)
+polygon = PackedVector2Array(-43.999996, 54.000004, 1.2239188e-06, 14, 44.000004, 53.999996)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

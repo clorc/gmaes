@@ -15,6 +15,10 @@ run/main_scene="uid://dcapowdqv81kk"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AttemptNumber="*res://scripts/attempt_number.gd"
+
 [display]
 
 window/size/viewport_width=1280
