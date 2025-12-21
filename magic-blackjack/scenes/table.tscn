@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvbext8rmp8oo"]
+
+[ext_resource type="Script" uid="uid://ck5mpgbkqpj73" path="res://scripts/card_manager.gd" id="1_02ppr"]
+[ext_resource type="PackedScene" uid="uid://p8h1wvyxun4j" path="res://scenes/card.tscn" id="2_eotx8"]
+
+[node name="table" type="Node2D"]
+
+[node name="card_manager" type="Node" parent="."]
+script = ExtResource("1_02ppr")
+
+[node name="player_cards" type="HBoxContainer" parent="card_manager"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -350.0
+offset_top = -250.0
+offset_right = 353.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="card" parent="card_manager/player_cards" instance=ExtResource("2_eotx8")]
+position = Vector2(346, 106)
