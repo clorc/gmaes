@@ -4,7 +4,10 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_up0cc"]
 
-[node name="card" type="Node2D"]
+[node name="card" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+pivot_offset = Vector2(0, -61)
 script = ExtResource("1_d81rb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -12,6 +15,7 @@ scale = Vector2(68, 122)
 texture = SubResource("PlaceholderTexture2D_up0cc")
 
 [node name="Label" type="Label" parent="."]
+layout_mode = 0
 offset_left = -34.0
 offset_top = -24.0
 offset_right = 34.0
