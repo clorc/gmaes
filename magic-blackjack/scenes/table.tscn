@@ -1,109 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://dvbext8rmp8oo"]
 
-[ext_resource type="Script" uid="uid://2e7dtgb643s0" path="res://scripts/player_cards.gd" id="1_eotx8"]
-[ext_resource type="PackedScene" uid="uid://p8h1wvyxun4j" path="res://scenes/card.tscn" id="2_eotx8"]
-[ext_resource type="Script" uid="uid://bhfdum52iup7j" path="res://scripts/dealer_cards.gd" id="3_x8522"]
+[ext_resource type="Script" uid="uid://ck5mpgbkqpj73" path="res://scripts/game_manager.gd" id="1_olh0b"]
+[ext_resource type="PackedScene" uid="uid://b477tin1et722" path="res://scenes/player.tscn" id="2_eotx8"]
+[ext_resource type="PackedScene" uid="uid://djudhj25bl14t" path="res://scenes/dealer.tscn" id="3_x8522"]
 
 [node name="table" type="Node2D"]
 
-[node name="card_manager" type="Node" parent="."]
-
-[node name="player_cards" type="HBoxContainer" parent="card_manager"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -350.0
-offset_top = -144.0
-offset_right = 353.0
-offset_bottom = -3.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 100
-alignment = 1
-script = ExtResource("1_eotx8")
-
-[node name="card" parent="card_manager/player_cards" instance=ExtResource("2_eotx8")]
-visible = false
-layout_mode = 2
-
-[node name="card2" parent="card_manager/player_cards" instance=ExtResource("2_eotx8")]
-visible = false
-layout_mode = 2
-
-[node name="dealer_cards" type="HBoxContainer" parent="card_manager"]
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -350.0
-offset_top = -510.0
-offset_right = 353.0
-offset_bottom = -369.0
-grow_horizontal = 2
-grow_vertical = 0
-theme_override_constants/separation = 100
-alignment = 1
-script = ExtResource("3_x8522")
-
-[node name="card" parent="card_manager/dealer_cards" instance=ExtResource("2_eotx8")]
-visible = false
-layout_mode = 2
-
-[node name="card2" parent="card_manager/dealer_cards" instance=ExtResource("2_eotx8")]
-visible = false
-layout_mode = 2
-
-[node name="score" type="Label" parent="card_manager"]
-offset_left = 611.0
-offset_top = 428.0
-offset_right = 672.0
-offset_bottom = 451.0
-text = "Score: 0"
-
-[node name="dealer_score" type="Label" parent="card_manager"]
-offset_left = 611.0
-offset_top = 300.0
-offset_right = 672.0
-offset_bottom = 323.0
-text = "Table: 0"
-
-[node name="Buttons" type="Control" parent="card_manager"]
+[node name="game_manager" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+script = ExtResource("1_olh0b")
 
-[node name="hit" type="Button" parent="card_manager/Buttons"]
-custom_minimum_size = Vector2(100, 0)
+[node name="dealer" parent="game_manager" instance=ExtResource("3_x8522")]
 layout_mode = 0
-offset_left = 1116.0
-offset_top = 520.0
-offset_right = 1216.0
-offset_bottom = 551.0
-text = "Hit"
+offset_left = 638.0
+offset_top = 190.0
+offset_right = 678.0
+offset_bottom = 230.0
 
-[node name="stand" type="Button" parent="card_manager/Buttons"]
-custom_minimum_size = Vector2(100, 0)
-layout_mode = 0
-offset_left = 1115.0
-offset_top = 577.0
-offset_right = 1168.0
-offset_bottom = 608.0
-text = "Stand
-"
-
-[node name="Label" type="Label" parent="card_manager"]
-visible = false
-offset_left = 403.0
-offset_top = 156.0
-offset_right = 1216.0
-offset_bottom = 705.0
-theme_override_font_sizes/font_size = 200
-text = "BUST
-"
-
-[connection signal="pressed" from="card_manager/Buttons/hit" to="card_manager/player_cards" method="_on_hit_pressed"]
-[connection signal="pressed" from="card_manager/Buttons/stand" to="card_manager/player_cards" method="_on_stand_pressed"]
+[node name="player" parent="game_manager" instance=ExtResource("2_eotx8")]
+layout_mode = 1

@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://djudhj25bl14t"]
+
+[ext_resource type="PackedScene" uid="uid://3h4441w36qq8" path="res://scenes/card_manager.tscn" id="1_dqr6n"]
+[ext_resource type="Script" uid="uid://bhfdum52iup7j" path="res://scripts/dealer.gd" id="1_vdw2x"]
+
+[node name="dealer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_vdw2x")
+
+[node name="card_manager" parent="." instance=ExtResource("1_dqr6n")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 1.0
+offset_bottom = -1.0
+initial_card_num = 2
+score_name = "Table"

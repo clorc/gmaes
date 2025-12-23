@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://b477tin1et722"]
+
+[ext_resource type="PackedScene" uid="uid://3h4441w36qq8" path="res://scenes/card_manager.tscn" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://cwsnexswd2gpi" path="res://scripts/player.gd" id="1_qhqgy"]
+
+[node name="player" type="Control"]
+layout_mode = 3
+anchor_right = 0.031000001
+anchor_bottom = 0.056
+offset_right = 0.3199997
+offset_bottom = -0.3199997
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qhqgy")
+metadata/_edit_vertical_guides_ = [0.0, 1280.0, 640.0]
+metadata/_edit_horizontal_guides_ = [0.0, 720.0, 360.0]
+
+[node name="card_manager" parent="." instance=ExtResource("1_3vyb7")]
+layout_mode = 1
+anchors_preset = -1
+offset_left = 640.0
+offset_top = 573.0
+offset_right = 640.0
+offset_bottom = 573.0
+initial_card_num = 2
+score_name = "Score"
+
+[node name="Buttons" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="hit" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 1116.0
+offset_top = 520.0
+offset_right = 1216.0
+offset_bottom = 551.0
+text = "Hit"
+
+[node name="stand" type="Button" parent="Buttons"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 0
+offset_left = 1115.0
+offset_top = 577.0
+offset_right = 1168.0
+offset_bottom = 608.0
+text = "Stand
+"
+
+[connection signal="pressed" from="Buttons/hit" to="." method="_on_hit_pressed"]
+[connection signal="pressed" from="Buttons/stand" to="." method="_on_stand_pressed"]
