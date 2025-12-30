@@ -15,6 +15,11 @@ run/main_scene="uid://dvbext8rmp8oo"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+PlayerMoney="*res://scripts/player_money.gd"
+PlayerHealth="*res://scripts/player_health.gd"
+
 [display]
 
 window/size/viewport_width=1280
