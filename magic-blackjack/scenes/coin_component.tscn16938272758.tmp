@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1k0knnps3kcn"]
+
+[ext_resource type="Script" uid="uid://dxxjgrvgihgc5" path="res://scripts/coin_component.gd" id="1_xapo1"]
+[ext_resource type="PackedScene" uid="uid://r2dxqgs46wdr" path="res://scenes/coin.tscn" id="2_bgitm"]
+
+[node name="coin_component" type="HBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+offset_right = 256.0
+offset_bottom = 64.0
+theme_override_constants/separation = 19
+script = ExtResource("1_xapo1")
+
+[node name="coin" parent="." instance=ExtResource("2_bgitm")]
+layout_mode = 2
+
+[node name="coin2" parent="." instance=ExtResource("2_bgitm")]
+layout_mode = 2
+
+[node name="coin3" parent="." instance=ExtResource("2_bgitm")]
+layout_mode = 2
+value = 1

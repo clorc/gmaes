@@ -43,30 +43,5 @@ offset_bottom = 608.0
 text = "Stand
 "
 
-[node name="wager" type="VBoxContainer" parent="game_manager/Buttons"]
-layout_mode = 0
-offset_left = 108.0
-offset_top = 517.0
-offset_right = 176.0
-offset_bottom = 618.0
-
-[node name="up" type="Button" parent="game_manager/Buttons/wager"]
-layout_mode = 2
-text = "^"
-
-[node name="LineEdit" type="LineEdit" parent="game_manager/Buttons/wager"]
-layout_mode = 2
-placeholder_text = "0"
-alignment = 1
-context_menu_enabled = false
-emoji_menu_enabled = false
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
-
-[node name="down" type="Button" parent="game_manager/Buttons/wager"]
-layout_mode = 2
-text = "v
-"
-
 [connection signal="pressed" from="game_manager/Buttons/hit" to="game_manager" method="_on_hit_pressed"]
 [connection signal="pressed" from="game_manager/Buttons/stand" to="game_manager" method="_on_stand_pressed"]

@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://r2dxqgs46wdr"]
+
+[ext_resource type="Texture2D" uid="uid://dkhquxy78nnu3" path="res://assets/sprites/coin_heart_sprites.png" id="1_i64fm"]
+[ext_resource type="Script" uid="uid://cnvfweiq4e4bk" path="res://scripts/coin.gd" id="1_rwqht"]
+
+[sub_resource type="Theme" id="Theme_kahox"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11l1o"]
+
+[node name="coin" type="Panel"]
+anchors_preset = -1
+anchor_right = 0.05
+anchor_bottom = 0.089
+offset_bottom = -0.08000183
+theme = SubResource("Theme_kahox")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_11l1o")
+script = ExtResource("1_rwqht")
+
+[node name="sprite" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+texture = ExtResource("1_i64fm")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 64)

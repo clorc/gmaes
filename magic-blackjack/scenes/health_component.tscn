@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3mw4tc1pekre"]
+
+[ext_resource type="Script" uid="uid://drd822ewahl5n" path="res://scripts/health_component.gd" id="1_a1tyf"]
+
+[node name="HealthComponent" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a1tyf")
