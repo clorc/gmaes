@@ -5,7 +5,7 @@ extends Control
 
 func update_coins() -> void:
 	print(PlayerMoney.current_coins)
-	coin_component.add_coins(PlayerMoney.current_coins)
+	coin_component.set_curr_coins(PlayerMoney.current_coins)
 
 func draw_card() -> int:
 	card_manager.add_card()

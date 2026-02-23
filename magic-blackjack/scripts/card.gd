@@ -29,3 +29,9 @@ func get_card_value() -> int:
 			return 10
 	
 	return card_value
+
+func show_card_content() -> void:
+	label.visible = true
+	
+func hide_card_content() -> void:
+	label.visible = false

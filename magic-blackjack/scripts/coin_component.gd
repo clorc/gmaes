@@ -1,6 +1,8 @@
 extends HBoxContainer
 class_name CoinComponent
 
+@onready var coin_component: CoinComponent = $"."
+
 @export var max_coins: int
 @export var current_coins: int
 
@@ -12,6 +14,7 @@ func set_max_coins(new_coins: int) -> void:
 	
 func set_curr_coins(new_coins: int) -> void:
 	current_coins = new_coins
+	update_coin_gui()
 	
 func get_coins() -> int:
 	return current_coins
@@ -32,6 +35,9 @@ func remove_coins(amount:int) -> int:
 	return current_coins
 
 func update_coin_gui() -> void:
+	for n in coin_component.get_children():
+		n.queue_free()
+	
 	@warning_ignore("integer_division")
 	for i in range(current_coins/2):
 		var coin = load("res://scenes/coin.tscn")
@@ -39,7 +45,7 @@ func update_coin_gui() -> void:
 		
 		instance.value = 0
 		
-		add_child(instance)
+		coin_component.add_child(instance)
 		
 	if current_coins%2 == 1:
 		var coin = load("res://scenes/coin.tscn")
@@ -47,4 +53,4 @@ func update_coin_gui() -> void:
 		
 		instance.value = 1
 		
-		add_child(instance)
+		coin_component.add_child(instance)

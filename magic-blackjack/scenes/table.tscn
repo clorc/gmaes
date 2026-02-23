@@ -31,6 +31,7 @@ offset_left = 1116.0
 offset_top = 520.0
 offset_right = 1216.0
 offset_bottom = 551.0
+disabled = true
 text = "Hit"
 
 [node name="stand" type="Button" parent="game_manager/Buttons"]
@@ -40,6 +41,7 @@ offset_left = 1115.0
 offset_top = 577.0
 offset_right = 1168.0
 offset_bottom = 608.0
+disabled = true
 text = "Stand
 "
 
@@ -68,5 +70,12 @@ layout_mode = 2
 text = "v
 "
 
+[node name="wager_button" type="Button" parent="game_manager/Buttons/wager"]
+layout_mode = 2
+text = "wager"
+
 [connection signal="pressed" from="game_manager/Buttons/hit" to="game_manager" method="_on_hit_pressed"]
 [connection signal="pressed" from="game_manager/Buttons/stand" to="game_manager" method="_on_stand_pressed"]
+[connection signal="pressed" from="game_manager/Buttons/wager/up" to="game_manager" method="_on_up_pressed"]
+[connection signal="pressed" from="game_manager/Buttons/wager/down" to="game_manager" method="_on_down_pressed"]
+[connection signal="pressed" from="game_manager/Buttons/wager/wager_button" to="game_manager" method="_on_wager_button_pressed"]

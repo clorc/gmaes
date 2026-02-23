@@ -39,6 +39,20 @@ func update_score() -> void:
 	var curr_score = get_total_card_value()
 	score.text = "%s: %d" % [score_name, curr_score]
 	
+func show_card_fronts() -> void:
+	for card in card_array:
+		card.show_card_content()
+	
+func hide_card_fronts() -> void:
+	for card in card_array:
+		card.hide_card_content()
+	
+func show_score() -> void:
+	score.visible = true
+	
+func hide_score() -> void:
+	score.visible = false
+	
 func add_card() -> void:
 	var card = load("res://scenes/card.tscn")
 	var instance = card.instantiate()
