@@ -13,7 +13,6 @@ const screen_height: int = 720
 var rng = RandomNumberGenerator.new()
 
 var card_array: Array
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	for i in range(initial_card_num):

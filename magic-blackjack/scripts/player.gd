@@ -33,3 +33,11 @@ func tie() -> void:
 	print("tie")
 	await get_tree().create_timer(1).timeout
 	get_tree().reload_current_scene()
+	
+func hide_cards() -> void:
+	card_manager.hide_card_fronts()
+	card_manager.hide_score()
+	
+func show_cards() -> void:
+	card_manager.show_card_fronts()
+	card_manager.show_score()
