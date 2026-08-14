@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=4 uid="uid://dfdhvtusxlchp"]
+
+[ext_resource type="PackedScene" uid="uid://c3tg8j68xaklt" path="res://scenes/world/rooms/base/room_base.tscn" id="1_ns84q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ns84q"]
+size = Vector2(338, 182)
+
+[node name="RoomBase" instance=ExtResource("1_ns84q")]
+
+[node name="WallTileLayer" parent="." index="0"]
+position = Vector2(-13, -13)
+tile_map_data = PackedByteArray("AAD4//v/AAAAAAAAAAD6//v/AAACAAAAAAD8//v/AAAEAAAAAAD+//v/AAAGAAAAAAAAAPv/AAAIAAAAABAIAPv/AAAAAAAAABAGAPv/AAACAAAAABAEAPv/AAAEAAAAABACAPv/AAAGAAAAABAIAAUAAAAAAAAAADAGAAUAAAACAAAAADAEAAUAAAAEAAAAADACAAUAAAAGAAAAADAAAAUAAAAIAAAAACD+/wUAAAAGAAAAACD8/wUAAAAEAAAAACD6/wUAAAACAAAAACD4/wUAAAAAAAAAACD4//3/AAAAAAEAAAD4////AAAAAAIAAAD4/wMAAAAAAAEAACD4/wEAAAAAAAIAACAIAAMAAAAAAAEAADAIAAEAAAAAAAIAADAIAP3/AAAAAAEAABAIAP//AAAAAAIAABA=")
+
+[node name="FloorTileLayer" parent="." index="1"]
+position = Vector2(-13, -13)
+tile_map_data = PackedByteArray("AAD6//3/AAACAAIAAAAGAP3/AAALAAIAABD6/wMAAAACAAgAACAGAAMAAAALAAgAADA=")
+
+[node name="RockTileLayer" parent="." index="2"]
+position = Vector2(-13, -13)
+
+[node name="HoleTileLayer" parent="." index="3"]
+position = Vector2(-13, -13)
+
+[node name="CollisionShape2D" parent="Floorspace" index="0"]
+shape = SubResource("RectangleShape2D_ns84q")

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cdx2nnyywruxq"]
 
-[ext_resource type="Script" uid="uid://dlursasp0mbvq" path="res://scenes/world/floors/room_base.gd" id="1_5bxm6"]
+[ext_resource type="Script" uid="uid://dlursasp0mbvq" path="res://scenes/world/floors/floor_base.gd" id="1_5bxm6"]
 
 [node name="RoomBase" type="Node2D"]
 script = ExtResource("1_5bxm6")

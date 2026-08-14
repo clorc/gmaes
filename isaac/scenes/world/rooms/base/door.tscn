@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=3 uid="uid://c4i1gwkp873qh"]
+
+[ext_resource type="Texture2D" uid="uid://0y113s4sq110" path="res://assets/sprites/room/door_01_normaldoor.png" id="1_tts44"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1jcrd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tts44"]
+size = Vector2(34, 11)
+
+[node name="Door" type="StaticBody2D"]
+
+[node name="DoorSprite" type="Node" parent="."]
+
+[node name="DoorInside" type="Sprite2D" parent="DoorSprite"]
+texture = ExtResource("1_tts44")
+region_enabled = true
+region_rect = Rect2(64, 0, 64, 48)
+
+[node name="DoorLeft" type="Sprite2D" parent="DoorSprite"]
+visible = false
+texture = ExtResource("1_tts44")
+region_enabled = true
+region_rect = Rect2(0, 48, 64, 48)
+
+[node name="DoorRight" type="Sprite2D" parent="DoorSprite"]
+visible = false
+texture = ExtResource("1_tts44")
+region_enabled = true
+region_rect = Rect2(64, 48, 64, 48)
+
+[node name="DoorFrame" type="Sprite2D" parent="DoorSprite"]
+texture = ExtResource("1_tts44")
+region_enabled = true
+region_rect = Rect2(0, 0, 64, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1jcrd")
+
+[node name="DoorTrigger" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorTrigger"]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_tts44")

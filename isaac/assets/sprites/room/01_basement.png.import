@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://wd737fnkiahc"
-path="res://.godot/imported/char_sheet.png-18cdfd831e9f43dca2cf3eabf35fbbb0.ctex"
+uid="uid://cdwuf7kbpere"
+path="res://.godot/imported/01_basement.png-cda02843d7b3fe266d0e11764e0303c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/char_sheet.png"
-dest_files=["res://.godot/imported/char_sheet.png-18cdfd831e9f43dca2cf3eabf35fbbb0.ctex"]
+source_file="res://assets/sprites/room/01_basement.png"
+dest_files=["res://.godot/imported/01_basement.png-cda02843d7b3fe266d0e11764e0303c3.ctex"]
 
 [params]
 

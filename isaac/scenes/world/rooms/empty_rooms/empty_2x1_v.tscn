@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=4 uid="uid://cwoc1q5ty4crs"]
+
+[ext_resource type="PackedScene" uid="uid://c3tg8j68xaklt" path="res://scenes/world/rooms/base/room_base.tscn" id="1_1icdf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1icdf"]
+size = Vector2(338, 364)
+
+[node name="RoomBase" instance=ExtResource("1_1icdf")]
+
+[node name="WallTileLayer" parent="." index="0"]
+position = Vector2(-13, 0)
+tile_map_data = PackedByteArray("AAD4//f/AAAAAAAAAAD6//f/AAACAAAAAAD8//f/AAAEAAAAAAD+//f/AAAGAAAAAAAAAPf/AAAIAAAAABAIAPf/AAAAAAAAABAGAPf/AAACAAAAABAEAPf/AAAEAAAAABACAPf/AAAGAAAAABAAAAgAAAAIAAAAADACAAgAAAAGAAAAADAEAAgAAAAEAAAAADAGAAgAAAACAAAAADAIAAgAAAAAAAAAADD//wgAAAAIAAAAACD9/wgAAAAGAAAAACD7/wgAAAAEAAAAACD4/wgAAAAAAAAAACD4//n/AAAAAAEAAAD4//v/AAAAAAIAAAD4//3/AAAAAAIAAAD4/wIAAAAAAAIAACD4/wQAAAAAAAIAACD4/wYAAAAAAAEAACD4//7/AAAAAAEAAAD4/wEAAAAAAAEAACAIAAYAAAAAAAEAADAIAPn/AAAAAAEAABAIAPr/AAAAAAIAABAIAPv/AAAAAAEAABAIAPz/AAAAAAIAABAIAP3/AAAAAAEAABAIAP7/AAAAAAEAADAIAP//AAAAAAIAADAIAAAAAAAAAAEAADAIAAEAAAAAAAIAADAIAAIAAAAAAAEAADAIAAQAAAAAAAEAADAIAAMAAAAAAAIAADD6/wgAAAACAAAAACA=")
+
+[node name="FloorTileLayer" parent="." index="1"]
+position = Vector2(-13, 0)
+tile_map_data = PackedByteArray("AAAAAAMAAQACAAAAAAAAAPz/AQACAAEAADA=")
+
+[node name="RockTileLayer" parent="." index="2"]
+position = Vector2(-13, 0)
+
+[node name="HoleTileLayer" parent="." index="3"]
+position = Vector2(-13, 0)
+
+[node name="CollisionShape2D" parent="Floorspace" index="0"]
+shape = SubResource("RectangleShape2D_1icdf")

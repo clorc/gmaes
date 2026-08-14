@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ocubkaufsgbq"]
+
+[ext_resource type="PackedScene" uid="uid://dfdhvtusxlchp" path="res://scenes/world/rooms/empty_rooms/empty_1x1.tscn" id="1_20gdk"]
+
+[node name="RoomBase" instance=ExtResource("1_20gdk")]
+
+[node name="FloorTileLayer" parent="." index="1"]
+tile_map_data = PackedByteArray(0, 0, 250, 255, 253, 255, 0, 0, 2, 0, 2, 0, 0, 0, 6, 0, 253, 255, 0, 0, 11, 0, 2, 0, 0, 16, 250, 255, 3, 0, 0, 0, 2, 0, 8, 0, 0, 32, 6, 0, 3, 0, 0, 0, 11, 0, 8, 0, 0, 48, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0)

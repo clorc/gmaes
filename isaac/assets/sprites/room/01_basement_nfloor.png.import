@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b7soyj1lvwxrh"
-path="res://.godot/imported/floor_sheet.png-3e75b5b34e677e17f963dce404db335c.ctex"
+uid="uid://c0uablusjwv7r"
+path="res://.godot/imported/01_basement_nfloor.png-bf4306c65fe5f03137f7e5d9991bad01.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/room/floor_sheet.png"
-dest_files=["res://.godot/imported/floor_sheet.png-3e75b5b34e677e17f963dce404db335c.ctex"]
+source_file="res://assets/sprites/room/01_basement_nfloor.png"
+dest_files=["res://.godot/imported/01_basement_nfloor.png-bf4306c65fe5f03137f7e5d9991bad01.ctex"]
 
 [params]
 
